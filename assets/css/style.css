@@ -1,0 +1,89 @@
+*{
+    margin:0;
+    padding:0;
+    list-style: none;
+    text-decoration: none;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+body {
+    background-color:#0B0E1C;
+    color: #EAF4FF;
+}
+header {
+    background-image: url(../img/elements.webp);
+    height: 80vh;
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    text-align: center;
+}
+
+ul{
+    display:flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+li a{
+    color: #EAF4FF;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+h1 {
+    color: #FFD700;
+    margin-top: 35vh;
+    font-size: 4rem;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    margin-top: 4rem;
+}
+
+
+form {
+    width: 400px;
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+input, select, textarea {
+    display:block;
+    width:100%;
+    margin:10px 0;
+    padding:10px;
+    border-radius:10px;
+    border: 1px solid #eee;
+    transition: .3s border-color;
+}
+
+button {
+    padding:10px;
+    border:none;
+    background-color:#413F54;
+    color:#fff;
+    font-weight:600;
+    border-radius:5px;
+    width:50%;
+    transition:all ease-in-out 0.3s ;
+}
+
+label {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  margin-right: 0.5rem;
+}
+
+fieldset {
+    text-align: center;
+}
