@@ -59,7 +59,7 @@
                 echo '<p class="author">Ajouté par : ' . ucfirst(htmlspecialchars($data['username'])) . '</p>';
 
                 echo '<div class="btn-card">';
-                echo '<a class="btn" href="modifier.php?id=' . $data['id'] . '">Modifier</a>';
+                echo '<a class="btn" href="/Academie/app/action/modify.php?id=' . $data['id'] . '">Modifier</a>';
                 echo '<a class="btn" href="/Academie/app/action/delete.php?id=' . $data['id'] . '" onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer cette créature 🐦‍🔥 ?\')">Supprimer</a>';
                 echo '</div>';
                 echo '</div>';

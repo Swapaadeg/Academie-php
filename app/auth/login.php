@@ -3,7 +3,7 @@
 
     if(!empty($_POST['username']) && !empty($_POST['password'])){
         $entryUsername= htmlspecialchars($_POST['username']);
-        $entryPassword = htmlspecialchars($_POST['password']);
+        $entryPassword =($_POST['password']);
 
         $request = $bdd->prepare("SELECT *
                                 FROM users
@@ -11,13 +11,15 @@
                                 );
         $request->execute(['username' => $entryUsername]);
         $data = $request->fetch();
+        var_dump($data);
 
-        if(password_verify($entryPassword, $data['password'])) {
+        if($data && password_verify($entryPassword, $data['password'])) {
             $_SESSION['users'] = $data['username'];
             $_SESSION['userid'] = $data['id'];
+            $_SESSION['role'] = $data['role'];
             header('location:/Academie/index.php');
         }else{
-            echo '<p class=error">Entrées incorrectes<p>';
+            echo '<p class=error">Entrées incorrectes</p>';
         }
     }    
 ?>
@@ -28,9 +30,9 @@
     <h2>Connexion</h2>
     <div class="formulaire">
         <form id="auth" action="login.php" method='POST'>
-            <label id="username">Votre nom de magicien</label>
+            <label for="username">Votre nom de magicien</label>
             <input type="text" name="username" id="username">
-            <label id="password">Votre mot de passe</label>
+            <label for="password">Votre mot de passe</label>
             <input type="password" name="password" id="password">
             <button>Prendre mes fonctions</button>
         </form> 

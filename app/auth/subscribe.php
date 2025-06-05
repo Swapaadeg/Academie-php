@@ -2,7 +2,7 @@
 include('../includes/function.php');
 //Inscription
 if(!empty($_POST['username']) && !empty($_POST['password'])){
-    $username = sanitarize($_POST['username']);
+    $username = htmlspecialchars($_POST['username']);
     $password = htmlspecialchars($_POST['password']);
     $passwordConfirm = htmlspecialchars($_POST['passwordConfirm']);
     $elements = $_POST['elements'] ?? [];

@@ -2,14 +2,14 @@
 
 <?php
     if(isset($_POST['nom']) && isset($_POST['description']) && isset($_POST['type'])){
-        $nom=sanitarize($_POST['nom']);
-        $description=sanitarize($_POST['description']);
-        $type=sanitarize($_POST['type']);
+        $nom=htmlspecialchars($_POST['nom']);
+        $description=htmlspecialchars($_POST['description']);
+        $type=htmlspecialchars($_POST['type']);
 
         $img = NULL;
 
         if (!empty($_FILES['image']) && $_FILES['image']['error'] === 0) {
-            $imageName = sanitarize($_FILES['image']['name']);
+            $imageName = htmlspecialchars($_FILES['image']['name']);
             $imageInfo = pathinfo($imageName);
             $imageExt = strtolower($imageInfo['extension']);
             $autorizedExt = ['png', 'jpeg', 'jpg', 'webp', 'bmp', 'svg'];

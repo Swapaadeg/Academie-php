@@ -16,7 +16,7 @@
             $data = $requestRead->fetch();
             
             // Verification de l'utilisateur
-            if($_SESSION['userid']==$data['user_id']){
+            if ($_SESSION['userid'] == $data['user_id'] || ($_SESSION['userid'] == 1 && $_SESSION['role'] == 'admin')) {
                 // Suppression du fichier en local
                 unlink('../../assets/img/' . $data['img']);
 

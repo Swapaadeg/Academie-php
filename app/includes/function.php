@@ -11,6 +11,3 @@ $bdd = new PDO('mysql:host=mysql;dbname=academie;charset=utf8', 'root', 'root');
 //     -enlever les caractères de code(htmlspecialchar), 
 //     -les espaces(trim),
 //     -mettre tout en minuscule(strtolower)
-function sanitarize($input){
-    return htmlspecialchars(trim(strtolower($input)));
-}

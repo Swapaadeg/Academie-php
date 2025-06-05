@@ -17,6 +17,7 @@ header {
     background-position: top;
     background-repeat: no-repeat;
     text-align: center;
+    margin-bottom: 4rem;
 }
 
 ul{
@@ -42,9 +43,25 @@ h2 {
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
+
 h3 {
-    color: #FFD700;
-    text-align: center;
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 4rem;
+  font-weight: bold;
+  background: linear-gradient(270deg, #ff8a00, #e52e71, #9b00ff, #00c6ff, #ff8a00);
+  background-size: 1000% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* Firefox */
+  color: transparent;
+  animation: gradientMove 8s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .success {
