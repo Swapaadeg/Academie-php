@@ -6,8 +6,9 @@
     <h1>L'Institut Gandalf le Fabuleux</h1>
 </header>
 <body>
+    <!-- ucfirst ça passe le 1er caractere en Maj -->
     <?php if (isset($_SESSION['users'])): ?>
-        <h3>Bonjour <?= htmlspecialchars($_SESSION['users']) ?> !</h3>
+        <h3>Bonjour <?= ucfirst(htmlspecialchars($_SESSION['users'])) ?> !</h3>  
     <?php endif; ?>
 
     <h2>Bestiaire</h2>
@@ -17,15 +18,23 @@
             $request = $bdd->query('SELECT bestiaire.*, users.username, users.role
                                     FROM bestiaire
                                     JOIN users ON bestiaire.user_id = users.id');
-            while($data = $request->fetch()) {
+            while ($data = $request->fetch()) {
                 echo '<div class="card">';
+                
                 if (!empty($data['img'])) {
-                    echo '<img src="assets/img/' . htmlspecialchars($data['img']) . '" alt="' . htmlspecialchars($data['nom']) . '">';
+                    echo '<img src="assets/img/' . htmlspecialchars($data['img']) . '" alt="Image ajoutée par la communauté : ' . htmlspecialchars($data['nom']) . '">';
                 }
-                echo '<h3>' . htmlspecialchars($data['nom']) . '</h3>';
+
+                echo '<h3>' . ucfirst(htmlspecialchars($data['nom'])) . '</h3>';
                 echo '<p><strong>Type :</strong> ' . htmlspecialchars($data['type']) . '</p>';
                 echo '<p>' . htmlspecialchars($data['description']) . '</p>';
-                echo '<p class="author">Ajouté par : ' . htmlspecialchars($data['username']) . '</p>';
+                echo '<p class="author">Ajouté par : ' . ucfirst(htmlspecialchars($data['username'])) . '</p>';
+
+                echo '<div class="btn-card">';
+                echo '<button>Supprimer</button>';
+                echo '<button>Modifier</button>';
+                echo '</div>';
+
                 echo '</div>';
             }
         ?>

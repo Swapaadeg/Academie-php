@@ -25,15 +25,19 @@
         $request=$bdd->prepare('INSERT INTO bestiaire (nom, description,type,img,user_id) 
                                 VALUES (:nom,:description,:type,:img,:user_id)'
                                 );
-        $request->execute(array(
-        'nom' =>  $nom,
-        'description'  =>  $description,
-        'type' =>  $type,
-        'user_id'=> $_SESSION['userid'],
-        'img'   => $img,
+        $success = $request->execute(array(
+            'nom' =>  $nom,
+            'description'  =>  $description,
+            'type' =>  $type,
+            'user_id'=> $_SESSION['userid'],
+            'img'   => $img,
         ));
 
-        header('location:/Academie/index.php?success=1');
+        if ($success) {
+            $message = "<h3>🛡️ Vous avez vaincu cette créature ! Elle a bien été ajoutée au bestiaire 🐾</h3>";
+        }else{
+            $message = "<h3>💀 Votre créature vous a mangé... Elle n'a pas été ajoutée 😱</h3>";
+        }
     }
 ?>
 <body>
@@ -62,7 +66,7 @@
 
         <button type="submit">Ajouter la créature</button>
         </form>
-
+        <?php if (isset($message)) echo $message; ?>
     </section>
    
     

@@ -148,3 +148,26 @@ fieldset input {
 .bestiaire {
     padding: 1rem;
 }
+
+.btn-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-around;
+    margin-top: 1rem;
+}
+
+.btn-card button {
+    padding: 0.5rem 1rem;
+    background-color: #05084b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-card button:hover {
+    background-color: #7970ff;
+}

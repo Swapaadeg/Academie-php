@@ -1,7 +1,7 @@
 <?php 
 include('../includes/function.php');
-// Methode alternative au isset qui permet de vérifier si des requêtes de type POST ont bien été envoyé
-if($_SERVER['REQUEST_METHOD']==='POST'){
+//Inscription
+if(!empty($_POST['username']) && !empty($_POST['password'])){
     $username = sanitarize($_POST['username']);
     $password = htmlspecialchars($_POST['password']);
     $passwordConfirm = htmlspecialchars($_POST['passwordConfirm']);
