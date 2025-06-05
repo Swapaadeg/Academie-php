@@ -36,6 +36,16 @@ h1 {
     margin-top: 35vh;
     font-size: 4rem;
 }
+h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+h3 {
+    color: #FFD700;
+    text-align: center;
+}
 
 section {
     display: flex;
@@ -46,8 +56,8 @@ section {
 
 form {
     width: 400px;
-    margin: 2rem;
     display: flex;
+    margin-top: 2rem;
     flex-direction: column;
 }
 
@@ -70,20 +80,71 @@ button {
     border-radius:5px;
     width:50%;
     transition:all ease-in-out 0.3s ;
-}
-
-label {
-  display: inline-flex;
-  align-items: center;
-  margin-right: 1rem;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-input[type="radio"] {
-  margin-right: 0.5rem;
+    cursor: pointer;
 }
 
 fieldset {
+    border: 1px solid white;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+fieldset label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    color: white;
+    font-size: 1.1rem;
+}
+
+fieldset input {
+    width: auto;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 2rem;
+}
+.card {
+    width: 20%;
     text-align: center;
+    background-color: #1e1e2f;
+    color: white;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+.card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.card h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.3rem;
+    color: #ffe066;
+}
+
+.card .author {
+    font-style: italic;
+    color: #aaa;
+    margin-top: 1rem;
+}
+
+.bestiaire {
+    padding: 1rem;
 }
