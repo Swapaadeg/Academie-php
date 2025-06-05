@@ -1,32 +1,16 @@
 <?php include('../includes/function.php');?>
 
-<body>
-    <?php include('../includes/nav.php') ?>
-    <?php include('../includes/head.php');?>
-    <section>
-        <form action="app/action/add.php" method="POST" class="creature-form">
-        <label for="name">Nom de la créature :</label>
-        <input type="text" id="name" name="name" required>
+<?php
+    $check = $bdd->prepare("SELECT * FROM user_elements WHERE user_id = :user_id AND element_id = :element_id");
+    $check->execute([
+        'user_id' => $_SESSION['userid'],
+        'element_id' => $_POST['element_id']
+    ]);
 
-        <label for="description">Description :</label>
-        <textarea id="description" name="description" rows="5" required></textarea>
-
-        <label for="type">Type :</label>
-        <select id="type" name="type" required>
-            <option value="">-- Sélectionner un type --</option>
-            <option value="aquatique">Aquatique</option>
-            <option value="démoniaque">Démoniaque</option>
-            <option value="mort-vivante">Mort-vivante</option>
-            <option value="mi-bête">Mi-bête</option>
-        </select>
-
-        <label for="author">Ajoutée par :</label>
-        <input type="text" id="author" name="author" required>
-
-        <button type="submit">Ajouter la créature</button>
-        </form>
-
-    </section>
-   
-    
-</body>
+    if ($check->rowCount() > 0 || $_SESSION['role'] == 'admin') {
+        // Il peut ajouter le sort
+        // INSERT INTO sorts ...
+    } else {
+        echo "⛔ Tu ne maîtrises pas cet élément !";
+    }
+?>
