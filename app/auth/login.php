@@ -26,12 +26,14 @@
 <body>
     <?php include('../includes/nav.php') ?>
     <h2>Connexion</h2>
-    <form id="auth" action="login.php" method='POST'>
-        <label id="username">Votre nom de magicien</label>
-        <input type="text" name="username" id="username">
-        <label id="password">Votre mot de passe</label>
-        <input type="password" name="password" id="password">
-        <button>Prendre mes fonctions</button>
-    </form>
+    <div class="formulaire">
+        <form id="auth" action="login.php" method='POST'>
+            <label id="username">Votre nom de magicien</label>
+            <input type="text" name="username" id="username">
+            <label id="password">Votre mot de passe</label>
+            <input type="password" name="password" id="password">
+            <button>Prendre mes fonctions</button>
+        </form> 
+    </div>
 </body>
 </html>

@@ -11,6 +11,34 @@
         <h3>Bonjour <?= ucfirst(htmlspecialchars($_SESSION['users'])) ?> !</h3>  
     <?php endif; ?>
 
+    <!-- AFFICHAGE D'UN MESSAGE DE CONFIRMATION D'OPERATION -->
+    <?php
+        if(isset($_GET['success'])){
+            // DIFFERENT MESSAGE EN FONCTION DE L'OPERATION EFFECTUé
+            switch($_GET['success']){
+                case 1:
+                    echo "<p class='success'> 🥳 Votre Créature à bien été ajoutée</p>";
+                    break;
+                case 2:
+                    echo "<p class='success'> 🥳 Votre créature à bien été modifiée</p>";
+                    break;
+                case 3:
+                    echo "<p class='success'> 🥳 Votre créature a bien été supprimée</p>";
+                    break;
+            }
+        }
+
+        if(isset($_GET['error'])){
+            switch($_GET['error']){
+                case 1:
+                    echo "<p class='error'>🛑 Vous ne pouvez pas supprimer une créature qui ne vous appartient pas !</p>";
+                    break;
+                case 2:
+                    echo "<p class='error'>🛑 Vous ne pouvez pas modifier une créature qui ne vous appartient pas !</p>";
+                    break;
+        }
+}
+    ?>
     <h2>Bestiaire</h2>
     <section class="bestiaire">
         <div class="cards">
@@ -31,10 +59,9 @@
                 echo '<p class="author">Ajouté par : ' . ucfirst(htmlspecialchars($data['username'])) . '</p>';
 
                 echo '<div class="btn-card">';
-                echo '<button>Supprimer</button>';
-                echo '<button>Modifier</button>';
+                echo '<a class="btn" href="modifier.php?id=' . $data['id'] . '">Modifier</a>';
+                echo '<a class="btn" href="/Academie/app/action/delete.php?id=' . $data['id'] . '" onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer cette créature 🐦‍🔥 ?\')">Supprimer</a>';
                 echo '</div>';
-
                 echo '</div>';
             }
         ?>

@@ -71,23 +71,24 @@ if(!empty($_POST['username']) && !empty($_POST['password'])){
                     break;
             }
         } ?>
-
-    <form action="subscribe.php" method="post">
-        <label for="username">Votre nom de magicien</label>
-        <input type="text" name="username" id="username">
-        <label for="password">Votre mot de passe</label>
-        <input type="password" name="password" id="password">
-        <label for="passwordConfirm">Confirmez votre mot de passe</label>
-        <input type="password" name="passwordConfirm" id="passwordConfirm">
-        <!-- Input checkbox -->
-        <fieldset>
-            <legend>Spécialisation :</legend>
-            <label>Feu <input type="checkbox" name="elements[]" value="1"></label>
-            <label>Eau <input type="checkbox" name="elements[]" value="2"></label>
-            <label>Lumière <input type="checkbox" name="elements[]" value="3"></label>
-            <label>Air <input type="checkbox" name="elements[]" value="4"></label>
-        </fieldset>
-        <button>Rejoindre l'Académie</button>
-    </form>
+    <div class="formulaire">
+        <form action="subscribe.php" method="post">
+            <label for="username">Votre nom de magicien</label>
+            <input type="text" name="username" id="username">
+            <label for="password">Votre mot de passe</label>
+            <input type="password" name="password" id="password">
+            <label for="passwordConfirm">Confirmez votre mot de passe</label>
+            <input type="password" name="passwordConfirm" id="passwordConfirm">
+            <!-- Input checkbox -->
+            <fieldset>
+                <legend>Spécialisation :</legend>
+                <label>Feu <input type="checkbox" name="elements[]" value="1"></label>
+                <label>Eau <input type="checkbox" name="elements[]" value="2"></label>
+                <label>Lumière <input type="checkbox" name="elements[]" value="3"></label>
+                <label>Air <input type="checkbox" name="elements[]" value="4"></label>
+            </fieldset>
+            <button>Rejoindre l'Académie</button>
+        </form>
+    </div>    
 </body>
 </html>
