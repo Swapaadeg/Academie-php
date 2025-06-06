@@ -29,7 +29,10 @@
                     echo "<p class='success'> 🥳 Félicitations invocateur! Votre sort a bien été ajouté</p>";
                     break;
                 case 5: 
-                    echo "<p class='success'> 🥳 Votre sort a bien été supprimé</p>";
+                    echo "<p class='success'> 🥳 Félicitations invocateur! Votre sort a bien été supprimé</p>";
+                    break;
+                case 6: 
+                    echo "<p class='success'> 🥳 Félicitations invocateur! Votre sort a bien été modifié</p>";
                     break;
             }
         }
@@ -47,6 +50,9 @@
                     break;
                 case 4:
                     echo "<p class='error'>⛔ Tu ne maîtrises pas cet élément. Tu ne peux pas supprimer ce sort du grimoire.</p>";
+                    break;
+                case 5:
+                    echo "<p class='error'>⛔ Tu ne maîtrises pas cet élément. Tu ne peux pas modifier ce sort du grimoire.</p>";
                     break;
         }
 }
@@ -67,9 +73,9 @@
                     echo '<img src="assets/img/' . htmlspecialchars($data['img']) . '" alt="Image ajoutée par la communauté : ' . htmlspecialchars($data['nom']) . '">';
                 }
 
-                echo '<h3>' . ucfirst(htmlspecialchars($data['nom'])) . '</h3>';
-                echo '<p><strong>Type :</strong> ' . htmlspecialchars($data['type']) . '</p>';
-                echo '<p>' . htmlspecialchars($data['description']) . '</p>';
+                echo '<h3>' . ucfirst(($data['nom'])) . '</h3>';
+                echo '<p><strong>Type :</strong> ' . ($data['type']) . '</p>';
+                echo '<p>' . ($data['description']) . '</p>';
                 echo '<p class="author">Ajouté par : ' . ucfirst(htmlspecialchars($data['username'])) . '</p>';
 
                 echo '<div class="btn-card">';
@@ -86,20 +92,20 @@
     <!-- CODEX -->
     <h2>Codex des sorts</h2>
     <section>
-        <div class="cards">
+        <div class="elements">
         <?php
             $request = $bdd->query('SELECT sorts.*, elements.nom AS element_nom, users.username, users.role
                                     FROM sorts
                                     JOIN elements ON sorts.element_id = elements.id
                                     JOIN users ON sorts.user_id = users.id');
             while ($data = $request->fetch()) {
-            echo '<div class="card">';
+            echo '<div class="element">';
 
 
             if (!empty($data['img'])) {
-                echo '<img src="assets/img/' . htmlspecialchars($data['img']) . '" alt="Image du sort ' . htmlspecialchars($data['nom']) . '">';
+                echo '<img src="assets/img/' . htmlspecialchars($data['img']) . '" alt="Image du sort ' . ($data['nom']) . '">';
             }
-            echo '<h3>' . ucfirst(htmlspecialchars($data['nom'])) . '</h3>';
+            echo '<h3>' . ucfirst(($data['nom'])) . '</h3>';
             echo '<p><strong>Élément :</strong> ' . ucfirst(htmlspecialchars($data['element_nom'])) . '</p>';
             echo '<p class="author">Ajouté par : ' . ucfirst(htmlspecialchars($data['username'])) . '</p>';
 
