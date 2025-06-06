@@ -11,7 +11,6 @@
                                 );
         $request->execute(['username' => $entryUsername]);
         $data = $request->fetch();
-        var_dump($data);
 
         if($data && password_verify($entryPassword, $data['password'])) {
             $_SESSION['users'] = $data['username'];
@@ -24,7 +23,9 @@
     }    
 ?>
 
-<?php include('../includes/head.php'); ?>
+<?php 
+$pageTitle = "Connexion";
+include('../includes/head.php'); ?>
 <body>
     <?php include('../includes/nav.php') ?>
     <h2>Connexion</h2>
@@ -38,4 +39,5 @@
         </form> 
     </div>
 </body>
+<?php include('../includes/footer.php')?>
 </html>

@@ -1,5 +1,11 @@
 <?php 
 include('../includes/function.php');
+//Recup autant de checkbox que d'éléments en BDD
+$readElements = $bdd->query('SELECT * 
+                            FROM elements');
+$elementsList = $readElements->fetchAll();
+
+
 //Inscription
 if(!empty($_POST['username']) && !empty($_POST['password'])){
     $username = htmlspecialchars($_POST['username']);
@@ -32,7 +38,6 @@ if(!empty($_POST['username']) && !empty($_POST['password'])){
         );
 
 
-            // Exécution de la requête
             $request->execute(array(
             'username' =>  $username,
             'password'  =>  $passwordCrypt,
@@ -42,7 +47,9 @@ if(!empty($_POST['username']) && !empty($_POST['password'])){
 
             if (!empty($elements)) {
                 foreach ($elements as $elementId) {
-                    $insert = $bdd->prepare("INSERT INTO user_elements (user_id, element_id) VALUES (:user_id, :element_id)");
+                    $insert = $bdd->prepare("INSERT INTO user_elements (user_id, element_id) 
+                                            VALUES (:user_id, :element_id)"
+                                            );
                     $insert->execute([
                         'user_id' => $userId,
                         'element_id' => (int)$elementId
@@ -58,7 +65,9 @@ if(!empty($_POST['username']) && !empty($_POST['password'])){
 
 ?>
 
-<?php include('../includes/head.php'); ?>
+<?php 
+$pageTitle = "Inscription";
+include('../includes/head.php'); ?>
 <body>
     <?php include('../includes/nav.php') ?>
     <h2>Inscription</h2>
@@ -83,14 +92,17 @@ if(!empty($_POST['username']) && !empty($_POST['password'])){
             <input type="password" name="passwordConfirm" id="passwordConfirm">
             <!-- Input checkbox -->
             <fieldset>
-                <legend>Spécialisation :</legend>
-                <label>Feu <input type="checkbox" name="elements[]" value="1"></label>
-                <label>Eau <input type="checkbox" name="elements[]" value="2"></label>
-                <label>Lumière <input type="checkbox" name="elements[]" value="3"></label>
-                <label>Air <input type="checkbox" name="elements[]" value="4"></label>
+                <legend>Choisissez vos éléments :</legend>
+                <?php foreach ($elementsList as $element): ?>
+                    <label>
+                        <?= htmlspecialchars($element['nom']) ?>
+                        <input type="checkbox" name="elements[]" value="<?= $element['id'] ?>">
+                    </label>
+                <?php endforeach; ?>
             </fieldset>
             <button>Rejoindre l'Académie</button>
         </form>
     </div>    
 </body>
+<?php include('../includes/footer.php')?>
 </html>

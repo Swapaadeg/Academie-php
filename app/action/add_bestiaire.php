@@ -40,7 +40,9 @@
         }
     }
 ?>
-    <?php include('../includes/head.php');?>
+    <?php 
+    $pageTitle = "Ajouter une créature";
+    include('../includes/head.php');?>
 <body>
     <?php include('../includes/nav.php') ?>
 
@@ -71,4 +73,5 @@
    
     
 </body>
+<?php include('../includes/footer.php')?>
 </html>

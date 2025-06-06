@@ -1,4 +1,6 @@
-<?php include('app/includes/function.php');?>
+<?php 
+$pageTitle = "Académie des Arcanes";
+include('app/includes/function.php');?>
 <?php include('app/includes/head.php');?>
 
 <?php include('app/includes/nav.php'); ?>
@@ -119,6 +121,6 @@
         ?>
         </div>
     </section>
-
 </body>
+<?php include('app/includes/footer.php')?>
 </html>

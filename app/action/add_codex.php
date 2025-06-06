@@ -55,7 +55,9 @@
     }
 ?>
 
-<?php include('../includes/head.php');?>
+<?php 
+$pageTitle = "Ajouter un sort";
+include('../includes/head.php');?>
 
 <body>
     <?php include('../includes/nav.php') ?>
@@ -79,3 +81,4 @@
         </form>
     </section>
 </body>
+<?php include('../includes/footer.php')?>

@@ -109,4 +109,5 @@ if (isset($_POST['nom']) && isset($_POST['element_id'])) {
 </form>
 
 </body>
+<?php include('../includes/footer.php')?>
 </html>
