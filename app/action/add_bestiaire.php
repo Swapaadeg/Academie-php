@@ -36,13 +36,13 @@
         if ($success) {
             $message = "<h3>🛡️ Vous avez vaincu cette créature ! Elle a bien été ajoutée au bestiaire 🐾</h3>";
         }else{
-            $message = "<h3>💀 Votre créature vous a mangé... Elle n'a pas été ajoutée 😱</h3>";
+            $message = "<h3>💀 Votre créature s'est rebellée... Elle n'a pas été ajoutée au bestiaire 😱</h3>";
         }
     }
 ?>
+    <?php include('../includes/head.php');?>
 <body>
     <?php include('../includes/nav.php') ?>
-    <?php include('../includes/head.php');?>
 
     <section>
         <form action="add_bestiaire.php" method="POST" class="creature-form" enctype="multipart/form-data">

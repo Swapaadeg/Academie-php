@@ -40,11 +40,13 @@ if(!empty($_POST['username']) && !empty($_POST['password'])){
             ));
             $userId = $bdd->lastInsertId();
 
-            if(!empty($elements)) {
-                $insertElements = $bdd->prepare("INSERT INTO user_elements (user_id, element_id) 
-                                                VALUES (?, ?)");
+            if (!empty($elements)) {
                 foreach ($elements as $elementId) {
-                    $insertElements->execute([$userId, $elementId]);
+                    $insert = $bdd->prepare("INSERT INTO user_elements (user_id, element_id) VALUES (:user_id, :element_id)");
+                    $insert->execute([
+                        'user_id' => $userId,
+                        'element_id' => (int)$elementId
+                    ]);
                 }
             }
             header('location:/Academie/index.php?success=4');

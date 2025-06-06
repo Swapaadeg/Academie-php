@@ -1,6 +1,6 @@
 <?php
     include('../includes/function.php');
-
+//BESTIAIRE
     if(isset($_GET['id'])){
         $id = htmlspecialchars($_GET['id']);
 
@@ -36,3 +36,4 @@
         }else{
             header('location:/Academie/index.php');
         }
+?>
