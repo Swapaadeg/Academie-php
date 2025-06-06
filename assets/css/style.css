@@ -13,7 +13,10 @@ body {
 }
 header {
     background-image: url(../img/elements.webp);
-    height: 80vh;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-size: cover;
     background-position: top;
     background-repeat: no-repeat;
@@ -21,40 +24,106 @@ header {
     margin-bottom: 4rem;
 }
 
-ul{
-    display:flex;
-    justify-content: center;
-    gap: 2rem;
+/* NAVBAR */
+nav {
+    background: rgba(20, 20, 30, 0.7);
+    backdrop-filter: blur(8px);
+    border-bottom: 2px solid #FFD700;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
 }
 
-li a{
+ul {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li a {
+    position: relative;
     color: #EAF4FF;
     font-weight: 600;
     font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid transparent;
+    border-radius: 10px;
 }
 
-h1 {
-    color: #FFD700;
-    margin-top: 35vh;
-    font-size: 4rem;
+li a::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #FFD700, #FF6F00);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s ease-in-out;
 }
-h2 {
+
+li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+li a:hover {
+    color: #FFD700;
+    background: rgba(255, 215, 0, 0.1);
+    border-color: #FFD700;
+    box-shadow: 0 0 10px #FFD70066;
+}
+
+
+/* TITRES */
+h1 {
+    font-size: 4rem;
     text-align: center;
-    font-size: 2rem;
+    background: linear-gradient(90deg, #FFD700, #ff6f00, #ff00ff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: brillance 3s infinite linear;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+@keyframes brillance {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+h2 {
+    text-align:justify;
+    font-size: 3rem;
     margin-top: 2rem;
     margin-bottom: 1rem;
+    padding-left: 7rem;
 }
 
 h3 {
-  font-size: 3rem;
+  font-size: 2rem;
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   font-weight: bold;
-  background: linear-gradient(270deg, #ff8a00, #e52e71, #9b00ff, #00c6ff, #ff8a00);
+  background: linear-gradient(270deg, #e25822, #ffe92e, #1e90ff, #a0e9ff);
   background-size: 1000% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text; /* Firefox */
+  background-clip: text;
   color: transparent;
   animation: gradientMove 8s ease infinite;
 }
@@ -250,4 +319,72 @@ fieldset input {
     margin: 0.3rem 0;
     font-size: 0.95rem;
     color: #555;
+}
+
+
+/* Bordures par element */
+.element.feu {
+    border-left: 6px solid #e25822;
+    border-top: 3px solid #e25822;
+}
+
+.element.eau {
+    border-left: 6px solid #1e90ff;
+    border-top: 3px solid #1e90ff;
+}
+
+.element.air {
+    border-left: 6px solid #a0e9ff;
+    border-top: 3px solid #a0e9ff;
+}
+
+.element.lumière {
+    border-left: 6px solid #ffe92e;
+    border-top: 3px solid #ffe92e;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+   .cards {
+        flex-direction: column;
+        align-items: center;
+    }
+    .card {
+        width: 100%;
+    }
+    .elements {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+    .element {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    form {
+        width: 90%;
+    }
+
+    input, select, textarea {
+        font-size: 1rem;
+    }
+
+    button {
+        width: 100%;
+    }
+        h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+        padding-left: 2rem;
+        text-align: center;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
 }

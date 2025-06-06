@@ -1,9 +1,9 @@
 <?php include('app/includes/function.php');?>
 <?php include('app/includes/head.php');?>
 
+<?php include('app/includes/nav.php'); ?>
 <header>
-    <?php include('app/includes/nav.php'); ?>
-    <h1>L'Institut Gandalf le Fabuleux</h1>
+    <h1>Grimoire des Arcanes</h1>
 </header>
 <body>
     <!-- ucfirst ça passe le 1er caractere en Maj -->
@@ -99,22 +99,23 @@
                                     JOIN elements ON sorts.element_id = elements.id
                                     JOIN users ON sorts.user_id = users.id');
             while ($data = $request->fetch()) {
-            echo '<div class="element">';
+                $elementClass = strtolower($data['element_nom']);
+                echo '<div class="element ' . $elementClass . '">';
 
 
-            if (!empty($data['img'])) {
-                echo '<img src="assets/img/' . htmlspecialchars($data['img']) . '" alt="Image du sort ' . ($data['nom']) . '">';
-            }
-            echo '<h3>' . ucfirst(($data['nom'])) . '</h3>';
-            echo '<p><strong>Élément :</strong> ' . ucfirst(htmlspecialchars($data['element_nom'])) . '</p>';
-            echo '<p class="author">Ajouté par : ' . ucfirst(htmlspecialchars($data['username'])) . '</p>';
+                if (!empty($data['img'])) {
+                    echo '<img src="assets/img/' . htmlspecialchars($data['img']) . '" alt="Image du sort ' . ($data['nom']) . '">';
+                }
+                echo '<h3>' . ucfirst(($data['nom'])) . '</h3>';
+                echo '<p><strong>Élément :</strong> ' . ucfirst(htmlspecialchars($data['element_nom'])) . '</p>';
+                echo '<p class="author">Ajouté par : ' . ucfirst(htmlspecialchars($data['username'])) . '</p>';
 
-            echo '<div class="btn-card">';
-            echo '<a class="btn" href="/Academie/app/action/modify_codex.php?id=' . $data['id'] . '">Modifier</a>';
-            echo '<a class="btn" href="/Academie/app/action/delete_codex.php?id=' . $data['id'] . '" onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer ce sort 🪄 ?\')">Supprimer</a>';
-            echo '</div>';
-            echo '</div>';
-        }    
+                echo '<div class="btn-card">';
+                echo '<a class="btn" href="/Academie/app/action/modify_codex.php?id=' . $data['id'] . '">Modifier</a>';
+                echo '<a class="btn" href="/Academie/app/action/delete_codex.php?id=' . $data['id'] . '" onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer ce sort 🪄 ?\')">Supprimer</a>';
+                echo '</div>';
+                echo '</div>';
+            }    
         ?>
         </div>
     </section>

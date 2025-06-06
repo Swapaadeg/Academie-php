@@ -59,22 +59,23 @@
 
 <body>
     <?php include('../includes/nav.php') ?>
+    <section>
+        <form action="add_codex.php" method="POST" enctype="multipart/form-data">
+        <label for="nom">Nom du sort :</label>
+        <input type="text" name="nom" id="nom" required>
 
-    <form action="add_codex.php" method="POST" enctype="multipart/form-data">
-    <label for="nom">Nom du sort :</label>
-    <input type="text" name="nom" id="nom" required>
+        <label for="element_id">Élément :</label>
+        <select name="element_id" id="element_id" required>
+            <option value="1">Feu</option>
+            <option value="2">Eau</option>
+            <option value="3">Air</option>
+            <option value="4">Lumière</option>
+        </select>
 
-    <label for="element_id">Élément :</label>
-    <select name="element_id" id="element_id" required>
-        <option value="1">Feu</option>
-        <option value="2">Eau</option>
-        <option value="3">Air</option>
-        <option value="4">Lumière</option>
-    </select>
+        <label for="image">Image du sort :</label>
+        <input type="file" name="image" id="image">
 
-    <label for="image">Image du sort :</label>
-    <input type="file" name="image" id="image">
-
-    <button type="submit">Ajouter le sort au grimoire</button>
-</form>
+        <button type="submit">Ajouter le sort au grimoire</button>
+        </form>
+    </section>
 </body>
