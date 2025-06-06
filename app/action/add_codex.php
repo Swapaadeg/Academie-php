@@ -56,8 +56,9 @@
 ?>
 
 <?php 
-$pageTitle = "Ajouter un sort";
-include('../includes/head.php');?>
+    $pageTitle = "Ajouter un sort";
+    include('../includes/head.php');
+?>
 
 <body>
     <?php include('../includes/nav.php') ?>

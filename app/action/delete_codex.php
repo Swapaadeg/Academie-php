@@ -50,11 +50,11 @@
 
             header('location:/Academie/index.php?success=5');
             exit();
-        } else {
+        }else{
             header('location:/Academie/index.php?error=4');
             exit();
         }
-    } else {
+    }else{
         header('location:/Academie/index.php');
         exit();
     }

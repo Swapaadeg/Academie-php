@@ -24,8 +24,9 @@
 ?>
 
 <?php 
-$pageTitle = "Connexion";
-include('../includes/head.php'); ?>
+    $pageTitle = "Connexion";
+    include('../includes/head.php'); 
+?>
 <body>
     <?php include('../includes/nav.php') ?>
     <h2>Connexion</h2>

@@ -41,8 +41,9 @@
     }
 ?>
     <?php 
-    $pageTitle = "Ajouter une créature";
-    include('../includes/head.php');?>
+        $pageTitle = "Ajouter une créature";
+        include('../includes/head.php');
+    ?>
 <body>
     <?php include('../includes/nav.php') ?>
 
