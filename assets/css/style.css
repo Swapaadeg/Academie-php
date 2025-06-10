@@ -100,7 +100,7 @@ li a:hover {
 h1 {
     font-size: 4rem;
     text-align: center;
-    background: linear-gradient(90deg, #FFD700, #ff6f00, #ff00ff);
+    background: linear-gradient(100deg, #e25822, #ffe92e, #1e90ff, #a0e9ff);
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
@@ -120,8 +120,8 @@ h1 {
 
 h2 {
     text-align:justify;
-    font-size: 3rem;
-    margin-top: 6rem;
+    font-size: 2rem;
+    margin-top: 3rem;
     margin-bottom: 1rem;
     padding-left: 7rem;
 }
@@ -303,13 +303,42 @@ fieldset input {
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.btn-card a:hover {
-    background-color: #7970ff;
+.btn-card a::before, .btn-card-codex a::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 80%);
+    animation: shimmer 2s infinite linear;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
+.btn-card a:hover, .btn-card-codex a:hover {
+    background-color: #060144;
+    box-shadow: 0 0 12px #1d05f7, 0 0 20px #1d05f7;
+}
+
+.btn-card a:hover::before, .btn-card-codex a:hover::before {
+    opacity: 1;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
 /* LE CODEX  */
 .elements {
     display: grid;
@@ -430,7 +459,7 @@ footer {
     }
 
     form {
-        width: 90%;
+        width: 80%;
     }
 
     input, select, textarea {
