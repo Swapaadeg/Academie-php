@@ -208,33 +208,47 @@ fieldset input {
 
 /*   BESTIAIRE   */
 .cards {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 100%;
-    gap: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 2rem;
 }
+
 .card {
-    width: 20%;
-    text-align: center;
-    background-color: #1e1e2f;
-    color: white;
-    padding: 1rem;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.4);
-    transition: transform 0.3s ease;
+  flex: 1 1 250px;
+  max-width: 300px;
+  text-align: center;
+  align-items: center;
+  background-color: #1e1e2f;
+  color: white;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease;
+}
+
+.image-container {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+  max-width: 300px;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
 .card:hover {
     transform: scale(1.03);
 }
 
-.card img {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    margin-bottom: 1rem;
-}
 
 .card h3 {
     margin: 0 0 0.5rem;
@@ -365,6 +379,12 @@ footer {
     .card {
         width: 100%;
     }
+
+    .image-container {
+        width: 150px;
+        height: 150px;
+    }
+
     .elements {
         grid-template-columns: 1fr;
         padding: 1rem;

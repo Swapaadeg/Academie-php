@@ -64,29 +64,31 @@ include('app/includes/function.php');?>
     <h2>Bestiaire</h2>
     <section class="bestiaire">
         <div class="cards">
-        <?php
-            $request = $bdd->query('SELECT bestiaire.*, users.username, users.role
-                                    FROM bestiaire
-                                    JOIN users ON bestiaire.user_id = users.id');
-            while ($data = $request->fetch()) {
-                echo '<div class="card">';
-                
-                if (!empty($data['img'])) {
-                    echo '<img src="assets/img/' . htmlspecialchars($data['img']) . '" alt="Image ajoutée par la communauté : ' . htmlspecialchars($data['nom']) . '">';
+            <?php
+                $request = $bdd->query('SELECT bestiaire.*, users.username, users.role
+                                        FROM bestiaire
+                                        JOIN users ON bestiaire.user_id = users.id');
+                while ($data = $request->fetch()) {
+                    echo '<div class="card">';
+
+                    if (!empty($data['img'])) {
+                        echo '<div class="image-container">';
+                        echo '<img src="assets/img/' . htmlspecialchars($data['img']) . '" alt="Image ajoutée par la communauté : ' . htmlspecialchars($data['nom']) . '">';
+                        echo '</div>';
+                    }
+
+                    echo '<h3>' . ucfirst(($data['nom'])) . '</h3>';
+                    echo '<p><strong>Type :</strong> ' . ($data['type']) . '</p>';
+                    echo '<p>' . ($data['description']) . '</p>';
+                    echo '<p class="author">Ajouté par : ' . ucfirst(htmlspecialchars($data['username'])) . '</p>';
+
+                    echo '<div class="btn-card">';
+                    echo '<a class="btn" href="/Academie/app/action/modify.php?id=' . $data['id'] . '">Modifier</a>';
+                    echo '<a class="btn" href="/Academie/app/action/delete.php?id=' . $data['id'] . '" onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer cette créature 🐦‍🔥 ?\')">Supprimer</a>';
+                    echo '</div>';
+                    echo '</div>';
                 }
-
-                echo '<h3>' . ucfirst(($data['nom'])) . '</h3>';
-                echo '<p><strong>Type :</strong> ' . ($data['type']) . '</p>';
-                echo '<p>' . ($data['description']) . '</p>';
-                echo '<p class="author">Ajouté par : ' . ucfirst(htmlspecialchars($data['username'])) . '</p>';
-
-                echo '<div class="btn-card">';
-                echo '<a class="btn" href="/Academie/app/action/modify.php?id=' . $data['id'] . '">Modifier</a>';
-                echo '<a class="btn" href="/Academie/app/action/delete.php?id=' . $data['id'] . '" onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer cette créature 🐦‍🔥 ?\')">Supprimer</a>';
-                echo '</div>';
-                echo '</div>';
-            }
-        ?>
+            ?>
         </div>
     </section>
 
@@ -111,7 +113,18 @@ include('app/includes/function.php');?>
                 echo '<h3>' . ucfirst(($data['nom'])) . '</h3>';
                 echo '<p><strong>Élément :</strong> ' . ucfirst(htmlspecialchars($data['element_nom'])) . '</p>';
                 echo '<p class="author">Ajouté par : ' . ucfirst(htmlspecialchars($data['username'])) . '</p>';
-
+                $stmt=$bdd->prepare('SELECT username 
+                                    FROM users
+                                    JOIN user_elements 
+                                    ON users.id = user_elements.user_id
+                                    WHERE user_elements.element_id = :element_id
+                                    ');
+                $stmt->execute(['element_id' => $data['element_id']]);
+                $specialistes = $stmt->fetchAll(PDO::FETCH_COLUMN);
+                
+                if (!empty($specialistes)) {
+                    echo '<p><strong>Spécialiste(s) :</strong> ' . implode('/ ', array_map('ucfirst', $specialistes)) . '</p>';
+                }
                 echo '<div class="btn-card">';
                 echo '<a class="btn" href="/Academie/app/action/modify_codex.php?id=' . $data['id'] . '">Modifier</a>';
                 echo '<a class="btn" href="/Academie/app/action/delete_codex.php?id=' . $data['id'] . '" onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer ce sort 🪄 ?\')">Supprimer</a>';

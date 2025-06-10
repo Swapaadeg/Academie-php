@@ -109,25 +109,26 @@
 <?php include('../includes/head.php'); ?>
 <body>
     <?php include('../includes/nav.php') ?>
-    <form action="modify.php?id=<?= $data['id'] ?>" method="POST" enctype="multipart/form-data">
-        <label for="nom">Ajoutez une nouvelle créature</label>
-        <input id="nom" type="text" name="nom" value="<?php echo $data['nom'];?>">
-        <label for="description">Entrez la description</label>
-        <textarea id="description" name="description" required><?= htmlspecialchars($data['description']) ?></textarea>
-        <select id="type" name="type" required>
-            <option value="">-- Sélectionner un type --</option>
-            <option value="aquatique">Aquatique</option>
-            <option value="démoniaque">Démoniaque</option>
-            <option value="mort-vivante">Mort-vivante</option>
-            <option value="mi-bête">Mi-bête</option>
-        </select>
-        <input type="hidden" name="id" value="<?php echo $data['id'];?>">
-        <label for="image">Choisissez une image</label>
-        <input id="image" type="file" name="image">
+    <section>
+        <form action="modify.php?id=<?= $data['id'] ?>" method="POST" enctype="multipart/form-data">
+            <label for="nom">Ajoutez une nouvelle créature</label>
+            <input id="nom" type="text" name="nom" value="<?php echo $data['nom'];?>">
+            <label for="description">Entrez la description</label>
+            <textarea id="description" name="description" required><?= htmlspecialchars($data['description']) ?></textarea>
+            <select id="type" name="type" required>
+                <option value="">-- Sélectionner un type --</option>
+                <option value="aquatique">Aquatique</option>
+                <option value="démoniaque">Démoniaque</option>
+                <option value="mort-vivante">Mort-vivante</option>
+                <option value="mi-bête">Mi-bête</option>
+            </select>
+            <input type="hidden" name="id" value="<?php echo $data['id'];?>">
+            <label for="image">Choisissez une image</label>
+            <input id="image" type="file" name="image">
 
-        <button>Modifier</button>
-    </form>
-    
+            <button>Modifier</button>
+        </form>
+    </section>
 </body>
 <?php include('../includes/footer.php')?>
 </html>

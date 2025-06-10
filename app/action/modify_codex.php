@@ -91,25 +91,25 @@
     <?php include('../includes/nav.php'); ?>
 
     <h2>Modifier un sort</h2>
+    <section>
+        <form action="modify_codex.php?id=<?= $sort['id'] ?>" method="POST" enctype="multipart/form-data">
+            <label for="nom">Nom du sort :</label>
+            <input type="text" name="nom" id="nom" value="<?= htmlspecialchars($sort['nom']) ?>" required>
 
-    <form action="modify_codex.php?id=<?= $sort['id'] ?>" method="POST" enctype="multipart/form-data">
-        <label for="nom">Nom du sort :</label>
-        <input type="text" name="nom" id="nom" value="<?= htmlspecialchars($sort['nom']) ?>" required>
+            <label for="element_id">Élément :</label>
+            <select name="element_id" id="element_id">
+                <option value="1" <?= $sort['element_id'] == 1 ? 'selected' : '' ?>>Feu</option>
+                <option value="2" <?= $sort['element_id'] == 2 ? 'selected' : '' ?>>Eau</option>
+                <option value="3" <?= $sort['element_id'] == 3 ? 'selected' : '' ?>>Lumière</option>
+                <option value="4" <?= $sort['element_id'] == 4 ? 'selected' : '' ?>>Air</option>
+            </select>
 
-        <label for="element_id">Élément :</label>
-        <select name="element_id" id="element_id">
-            <option value="1" <?= $sort['element_id'] == 1 ? 'selected' : '' ?>>Feu</option>
-            <option value="2" <?= $sort['element_id'] == 2 ? 'selected' : '' ?>>Eau</option>
-            <option value="3" <?= $sort['element_id'] == 3 ? 'selected' : '' ?>>Lumière</option>
-            <option value="4" <?= $sort['element_id'] == 4 ? 'selected' : '' ?>>Air</option>
-        </select>
+            <label for="image">Changer l'image (facultatif) :</label>
+            <input type="file" name="image" id="image">
 
-        <label for="image">Changer l'image (facultatif) :</label>
-        <input type="file" name="image" id="image">
-
-        <button type="submit">Mettre à jour le sort</button>
-    </form>
-
+            <button type="submit">Mettre à jour le sort</button>
+        </form>
+    </section>
 </body>
 <?php include('../includes/footer.php')?>
 </html>
