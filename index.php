@@ -16,7 +16,7 @@ include('app/includes/function.php');?>
     <!-- AFFICHAGE D'UN MESSAGE DE CONFIRMATION D'OPERATION -->
     <?php
         if(isset($_GET['success'])){
-            // DIFFERENT MESSAGE EN FONCTION DE L'OPERATION EFFECTUé
+            // MESSAGE SUCCESS
             switch($_GET['success']){
                 case 1:
                     echo "<p class='success'> 🥳 Votre Créature à bien été ajoutée</p>";
@@ -38,7 +38,7 @@ include('app/includes/function.php');?>
                     break;
             }
         }
-
+            // MESSAGE ERROR
         if(isset($_GET['error'])){
             switch($_GET['error']){
                 case 1:
@@ -97,7 +97,7 @@ include('app/includes/function.php');?>
     <h2>Codex des sorts</h2>
     <section>
         <div class="elements">
-        <?php
+            <?php
             $request = $bdd->query('SELECT sorts.*, elements.nom AS element_nom, users.username, users.role
                                     FROM sorts
                                     JOIN elements ON sorts.element_id = elements.id
@@ -106,32 +106,41 @@ include('app/includes/function.php');?>
                 $elementClass = strtolower($data['element_nom']);
                 echo '<div class="element ' . $elementClass . '">';
 
+                echo '<div class="codex-title"><h3>' . ucfirst($data['nom']) . '</h3></div>';
 
-                if (!empty($data['img'])) {
-                    echo '<img src="assets/img/' . htmlspecialchars($data['img']) . '" alt="Image du sort ' . ($data['nom']) . '">';
-                }
-                echo '<h3>' . ucfirst(($data['nom'])) . '</h3>';
-                echo '<p><strong>Élément :</strong> ' . ucfirst(htmlspecialchars($data['element_nom'])) . '</p>';
-                echo '<p class="author">Ajouté par : ' . ucfirst(htmlspecialchars($data['username'])) . '</p>';
-                $stmt=$bdd->prepare('SELECT username 
-                                    FROM users
-                                    JOIN user_elements 
-                                    ON users.id = user_elements.user_id
-                                    WHERE user_elements.element_id = :element_id
-                                    ');
-                $stmt->execute(['element_id' => $data['element_id']]);
-                $specialistes = $stmt->fetchAll(PDO::FETCH_COLUMN);
-                
-                if (!empty($specialistes)) {
-                    echo '<p><strong>Spécialiste(s) :</strong> ' . implode('/ ', array_map('ucfirst', $specialistes)) . '</p>';
-                }
-                echo '<div class="btn-card">';
-                echo '<a class="btn" href="/Academie/app/action/modify_codex.php?id=' . $data['id'] . '">Modifier</a>';
-                echo '<a class="btn" href="/Academie/app/action/delete_codex.php?id=' . $data['id'] . '" onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer ce sort 🪄 ?\')">Supprimer</a>';
+                echo '<div class="element-body">';
+                    if (!empty($data['img'])) {
+                        echo '<img src="assets/img/' . htmlspecialchars($data['img']) . '" alt="Image du sort ' . htmlspecialchars($data['nom']) . '">';
+                    }
+
+                    echo '<div class="element-info">';
+                        echo '<p><strong>Élément :</strong> ' . ucfirst(htmlspecialchars($data['element_nom'])) . '</p>';
+                        echo '<p class="author"><strong>Ajouté par :</strong> ' . ucfirst(htmlspecialchars($data['username'])) . '</p>';
+
+                        // Affichage des spécialistes
+                        $stmt = $bdd->prepare('SELECT username 
+                                            FROM users
+                                            JOIN user_elements 
+                                            ON users.id = user_elements.user_id
+                                            WHERE user_elements.element_id = :element_id');
+                        $stmt->execute(['element_id' => $data['element_id']]);
+                        $specialistes = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+                        if (!empty($specialistes)) {
+                            echo '<p><strong>Spécialiste(s) :</strong> ' . implode(' / ', array_map('ucfirst', $specialistes)) . '</p>';
+                        }
+                    echo '</div>'; // .element-info
+                echo '</div>'; // .element-body
+
+                // Boutons
+                echo '<div class="btn-card-codex">';
+                    echo '<a class="btn" href="/Academie/app/action/modify_codex.php?id=' . $data['id'] . '">Modifier</a>';
+                    echo '<a class="btn" href="/Academie/app/action/delete_codex.php?id=' . $data['id'] . '" onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer ce sort 🪄 ?\')">Supprimer</a>';
                 echo '</div>';
-                echo '</div>';
-            }    
-        ?>
+
+                echo '</div>'; // .element
+            }
+            ?>
         </div>
     </section>
 </body>
