@@ -67,7 +67,10 @@ include('app/includes/function.php');?>
             <?php
                 $request = $bdd->query('SELECT bestiaire.*, users.username, users.role
                                         FROM bestiaire
-                                        JOIN users ON bestiaire.user_id = users.id');
+                                        JOIN users 
+                                        ON bestiaire.user_id = users.id
+                                        ORDER BY bestiaire.nom ASC
+                                        ');
                 while ($data = $request->fetch()) {
                     echo '<div class="card">';
 

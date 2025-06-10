@@ -24,7 +24,7 @@ header {
     margin-bottom: 4rem;
 }
 
-/* NAVBAR */
+/* NAVBAR  ET MENU BURGER*/
 nav {
     background: rgba(20, 20, 30, 0.7);
     backdrop-filter: blur(8px);
@@ -37,6 +37,14 @@ nav {
     z-index: 1000;
 }
 
+.menu-icon {
+    display: none;
+    font-size: 2rem;
+    color: #FFD700;
+    padding: 0 1rem;
+    cursor: pointer;
+}
+
 ul {
     display: flex;
     justify-content: center;
@@ -44,6 +52,10 @@ ul {
     list-style: none;
     padding: 0;
     margin: 0;
+}
+
+#menu-toggle {
+    display: none;
 }
 
 li a {
@@ -117,6 +129,7 @@ h2 {
 h3 {
   font-size: 2rem;
   text-align: center;
+  margin-top: 1rem;
   margin-bottom: 2rem;
   font-weight: bold;
   background: linear-gradient(270deg, #e25822, #ffe92e, #1e90ff, #a0e9ff);
@@ -251,7 +264,7 @@ fieldset input {
 
 
 .card h3 {
-    margin: 0 0 0.5rem;
+    margin: 1 0 0.5rem;
     font-size: 1.3rem;
     color: #ffe066;
 }
@@ -439,6 +452,28 @@ footer {
 
     h3 {
         font-size: 1.5rem;
+    }
+
+     .menu-icon {
+        display: block;
+        z-index: 1001;
+    }
+    
+    nav ul.menu {
+        display: none;
+        flex-direction: column;
+        background-color: rgba(20, 20, 30, 0.9);
+        border-top: 1px solid #FFD700;
+        padding: 1rem 0;
+    }
+
+    #menu-toggle:checked + .menu-icon + ul.menu {
+        display: flex;
+    }
+
+    nav ul.menu li {
+        text-align: center;
+        padding: 0.5rem 0;
     }
 
 }
